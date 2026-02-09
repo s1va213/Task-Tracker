@@ -5,12 +5,12 @@ enum Status{
   COMPLETED,PENDING,DUE;
 }
 public class Task {
-  String taskTitle;
-  int taskId;
-  String description;
+  private String taskTitle;
+  private int taskId;
+   private String description;
   Status status;
-  LocalDate start;
-  LocalDate end;
+  private LocalDate start;
+  private LocalDate end;
   private  static int taskCount=1;
 
   public Task(String title,String description){
@@ -24,6 +24,19 @@ public class Task {
   private static int generateTaskId(){
     return taskCount++;
   }
+  public String getTaskTitle(){
+    return taskTitle;
+  }
+  public String getTaskDescription(){
+    return description;
+  }
+  public LocalDate getStartDate(){
+    return start;
+  }
+  public LocalDate getEndDate(){
+    return end;
+  }
+  
 
   
 

@@ -10,6 +10,7 @@ class TaskTracker{
   }
   public static void main(String[] args) {
     Scanner sc=new Scanner(System.in);
+    LoginUser.userMap=FileUtil.loadUser();
     print("this is Task Tracker Application,Welcome!!!");
     print(
   "Enter any of the below numbers to proceed:\n" +

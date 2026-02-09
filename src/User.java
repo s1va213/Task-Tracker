@@ -27,6 +27,13 @@ public  static void print(String s){
     public User(String name){
       this.name=name;
     }
+    public User(int id,String name,String password ){
+      userId=id;
+      this.name=name;
+      this.password=password;
+
+    }
+  
 
 
     public int getUserId(){
@@ -47,6 +54,13 @@ public  static void print(String s){
     public int getAge(){
       return age;
     }
+    public String getPassword(){
+      return password;    }
+    
+      
+      public  static void setUserCount(int n){
+        userCount=n;
+      }
     
 }
 
@@ -99,6 +113,7 @@ class UserSignUp{
     if(LoginUser.userMap.containsKey(name)) printLine("User already exists!!");
     else{
         LoginUser.userMap.put(name,newUser);
+        FileUtil.saveUser(newUser);
         printLine("User Created successfully :)");
   }
   }
