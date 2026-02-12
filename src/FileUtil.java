@@ -23,6 +23,7 @@ public class FileUtil {
       while((line=br.readLine())!=null){
 
         String[] contents=line.split(",");
+        if(contents.length<3) continue;
         int userId=Integer.parseInt(contents[0]);
         String userName=contents[1];
         String password=contents[2];

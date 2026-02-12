@@ -36,7 +36,15 @@ public class Task {
   public LocalDate getEndDate(){
     return end;
   }
-  
+  public int getTaskId(){
+    return taskId;
+  }
+  public  void setTaskTitle(String title){
+    taskTitle=title;
+  }
+  public  void setTaskdescription(String description){
+    this.description=description;
+  }
 
   
 

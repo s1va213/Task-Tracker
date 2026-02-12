@@ -12,11 +12,11 @@ public class TaskManager {
   }
 
 
-  Map<Integer,List<Task>> TaskMap=new HashMap<>();
-  public void addTask(User user,Task task){
-    TaskMap.computeIfAbsent(user.getUserId(), k-> new ArrayList<>());
+   static Map<Integer,List<Task>> TaskMap=new HashMap<>();
+  public static void addTask(User user,Task task){
+    TaskMap.computeIfAbsent(user.getUserId(), k-> new ArrayList<>()).add(task);
   }
-  public void removeTask(User user,Task task){
+  public static void removeTask(User user,Task task){
     if(TaskMap.containsKey(user.getUserId())){
       TaskMap.get(user.getUserId()).remove(task);
       printLine("Task : "+task.getTaskTitle()+"removed Succesfuly");
@@ -25,14 +25,39 @@ public class TaskManager {
       printLine("Invalid User");
     }
   }
-  public void VeiwTasks(User user){
+  public static void VeiwTasks(User user){
 
-    printLine("TaskName"+'\t'+'\t'+'\t'+"TaskDescription"+'\t'+'\t'+'\t'+'\t'+"start Date"+'\t'+"EndDate");
-    for(Task task:TaskMap.get(user.getUserId())){
-      printLine(task.getTaskTitle()+'\t'+'\t'+'\t'+task.getTaskDescription()+'\t'+task.getStartDate()+'\t'+task.getEndDate());
+    printLine("TaskID"+'\t'+"TaskName"+'\t'+'\t'+'\t'+"TaskDescription"+'\t'+'\t'+'\t'+'\t'+"start Date"+'\t'+"EndDate");
+    List<Task> TaskList=TaskMap.get(user.getUserId());
+
+    if(TaskList==null || TaskList.isEmpty()) {
+      printLine("No Tasks Found ,Add some Tasks :)");
+      return;
+    }
+    for(Task task:TaskList){
+      printLine(task.getTaskId()+"."+'\t'+task.getTaskTitle()+'\t'+'\t'+'\t'+task.getTaskDescription()+'\t'+task.getStartDate()+'\t'+task.getEndDate());
     }
   }
+  public static Task findTask( User user ,int taskId){
+    Task result=null;
+    List<Task> list=TaskMap.get(user.getUserId());
+    if( list==null || list.isEmpty() ){
+      printLine("No tasks Found");
+    }
+    for(Task t:list){
+      if(t.getTaskId()==taskId){
+        return t;
+      }
+    }
+    return result;
+  }
+  public static void editTaskTitle(Task task,String TaskTitle){
+    task.setTaskTitle( TaskTitle);
+  }
 
+  public static void editTaskDescription(Task task ,String description){
+    task.setTaskdescription( description);
+  }
 
 
 }

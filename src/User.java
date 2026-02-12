@@ -83,18 +83,19 @@ public  static void print(String s){
   public LoginUser(User user,String password){
      
   }
-  public static  void login(User user,String password){
+  public static  User login(User user,String password){
+    User storedUser=null;
      String nameKey=user.getUserName();
   boolean flag1=userMap.containsKey(nameKey);
   if(!flag1) {
     print("User Not Found :(");
-    return; 
+    return storedUser; 
   }
-  User storedUser =userMap.get(nameKey);
+  storedUser =userMap.get(nameKey);
   boolean flag2=storedUser.checkPassword(password);
   if(!flag2) printLine("Wrong password");
-  else printLine("Logged In Successfully");
-
+  else printLine("Logged In Successfully\n\n\n");
+  return storedUser;
   }
  
 }
@@ -114,7 +115,7 @@ class UserSignUp{
     else{
         LoginUser.userMap.put(name,newUser);
         FileUtil.saveUser(newUser);
-        printLine("User Created successfully :)");
+        printLine("User Created successfully :)\n\n");
   }
   }
 }
